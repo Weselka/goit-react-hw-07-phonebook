@@ -6,13 +6,14 @@ import { BoardContacts, ContactsItem } from './ContactList.styled';
 
 const getVisibleContacts = (contacts, filter) => {
   const normalized = filter.toLowerCase();
-    return contacts.filter(contact =>
-      contact.name.toLowerCase().includes(normalized)
-    );
+  return contacts.filter(contact =>
+    contact.name.toLowerCase().includes(normalized)
+  );
 };
 
 export const ContactList = () => {
   const contacts = useSelector(getContacts);
+  console.log(contacts);
   const filter = useSelector(getFilter);
   const visibleContacts = getVisibleContacts(contacts, filter);
 

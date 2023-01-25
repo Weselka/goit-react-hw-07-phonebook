@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getContacts } from '../../redux/selectors';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact } from '../../redux/operations';
 
 import { Label, Form, Input, Button } from './ContactForm.styled';
 
@@ -16,6 +16,7 @@ export const ContactForm = () => {
 
   const handleChange = e => {
     const { name, value } = e.target;
+    console.log({ name, value });
     switch (name) {
       case 'name':
         setNameInput(value);
@@ -37,6 +38,8 @@ export const ContactForm = () => {
     e.preventDefault();
     const dataForm = e.target.elements;
     const { name, number } = dataForm;
+    console.log(dataForm.name.value);
+    console.log(dataForm.number.value);
     const presence = contacts.some(
       contact => contact.name === dataForm.name.value
     );
