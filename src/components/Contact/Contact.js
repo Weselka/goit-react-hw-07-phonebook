@@ -3,14 +3,15 @@ import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/operations';
 import { ContactText, ButtonDelete, ContactsBox } from './Contact.styled';
 
-export const Contact = ({ contact: { id, name, number } }) => {
+export const Contact = ({ contact: { id, name, phone } }) => {
+  console.log(phone);
   const dispatch = useDispatch();
   const onDelete = () => dispatch(deleteContact(id));
-  
+
   return (
     <ContactsBox>
       <ContactText>
-        {name}: {number}
+        {name}: {phone}
       </ContactText>
       <ButtonDelete onClick={onDelete}>Delete</ButtonDelete>
     </ContactsBox>
