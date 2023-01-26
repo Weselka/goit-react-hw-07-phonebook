@@ -37,8 +37,8 @@ export const ContactForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const dataForm = e.target.elements;
-    const { name, number } = dataForm;
-    console.log(dataForm.name.value);
+    // const { name, number } = dataForm;
+    console.log(dataForm.name.value === nameInput);
     console.log(dataForm.number.value);
     const presence = contacts.some(
       contact => contact.name === dataForm.name.value
@@ -49,7 +49,7 @@ export const ContactForm = () => {
       clearStateInput();
       return;
     }
-    dispatch(addContact(name, number));
+    dispatch(addContact(nameInput, numberInput));
     e.target.reset();
     clearStateInput();
   };
