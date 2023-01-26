@@ -1,21 +1,11 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getContacts, getFilter } from '../../redux/selectors';
+import { selectVisibleContacts } from '../../redux/selectors';
 import { Contact } from 'components';
 import { BoardContacts, ContactsItem } from './ContactList.styled';
 
-const getVisibleContacts = (contacts, filter) => {
-  const normalized = filter.toLowerCase();
-  return contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalized)
-  );
-};
-
 export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  console.log(contacts);
-  const filter = useSelector(getFilter);
-  const visibleContacts = getVisibleContacts(contacts, filter);
+  const visibleContacts = useSelector(selectVisibleContacts);
 
   return (
     <BoardContacts>
