@@ -2,13 +2,13 @@
 // import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { getFilter } from '../../redux/selectors';
+import { selectFilter } from '../../redux/selectors';
 import { setChangesFilter } from '../../redux/filterSlice';
 import { FilterBox, Label, Input } from './Filter.styled';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
   const changesFilter = e => {
     dispatch(setChangesFilter(e.currentTarget.value));
   };

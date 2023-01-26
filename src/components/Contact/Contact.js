@@ -4,7 +4,7 @@ import { deleteContact } from '../../redux/operations';
 import { ContactText, ButtonDelete, ContactsBox } from './Contact.styled';
 
 export const Contact = ({ contact: { id, name, phone } }) => {
-  console.log(phone);
+  // console.log(phone);
   const dispatch = useDispatch();
   const onDelete = () => dispatch(deleteContact(id));
 

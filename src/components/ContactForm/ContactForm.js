@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { getContacts } from '../../redux/selectors';
+import { selectContacts } from '../../redux/selectors';
 import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/operations';
 
@@ -11,7 +11,7 @@ import { Label, Form, Input, Button } from './ContactForm.styled';
 export const ContactForm = () => {
   const [nameInput, setNameInput] = useState('');
   const [numberInput, setNumberInput] = useState('');
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -45,12 +45,12 @@ export const ContactForm = () => {
     );
     if (presence) {
       Notify.warning(`${dataForm.name.value} is already in contacts.`);
-      e.target.reset();
+      // e.target.reset();
       clearStateInput();
       return;
     }
     dispatch(addContact(nameInput, numberInput));
-    e.target.reset();
+    // e.target.reset();
     clearStateInput();
   };
   return (
