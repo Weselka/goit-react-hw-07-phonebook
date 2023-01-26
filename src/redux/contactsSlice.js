@@ -10,6 +10,8 @@ import { fetchContacts, addContact, deleteContact } from './operations';
 
 const extraActions = [fetchContacts, addContact, deleteContact];
 
+const getActions = type => isAnyOf(...extraActions.map(action => action[type]));
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
@@ -31,26 +33,17 @@ const contactsSlice = createSlice({
         );
         state.items.splice(index, 1);
       })
-      .addMatcher(
-        isAnyOf(...extraActions.map(action => action.pending)),
-        state => {
-          state.isLoading = true;
-        }
-      )
-      .addMatcher(
-        isAnyOf(...extraActions.map(action => action.rejected)),
-        (state, action) => {
-          state.isLoading = false;
-          state.error = action.payload;
-        }
-      )
-      .addMatcher(
-        isAnyOf(...extraActions.map(action => action.fulfilled)),
-        state => {
-          state.isLoading = false;
-          state.error = null;
-        }
-      ),
+      .addMatcher(getActions('pending'), state => {
+        state.isLoading = true;
+      })
+      .addMatcher(getActions('rejected'), (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addMatcher(getActions('fulfilled'), state => {
+        state.isLoading = false;
+        state.error = null;
+      }),
 });
 
 export const contactsReducer = contactsSlice.reducer;
