@@ -49,7 +49,7 @@ export const ContactForm = () => {
       clearStateInput();
       return;
     }
-    dispatch(addContact(nameInput, numberInput));
+    dispatch(addContact({name:nameInput, number:numberInput}));
     // e.target.reset();
     clearStateInput();
   };
