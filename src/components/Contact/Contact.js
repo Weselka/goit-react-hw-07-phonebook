@@ -1,12 +1,17 @@
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { fetchContacts } from 'redux/operations';
 import { deleteContact } from '../../redux/operations';
 import { ContactText, ButtonDelete, ContactsBox } from './Contact.styled';
 
 export const Contact = ({ contact: { id, name, phone } }) => {
-  // console.log(phone);
+  console.log(id);
   const dispatch = useDispatch();
   const onDelete = () => dispatch(deleteContact(id));
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <ContactsBox>
