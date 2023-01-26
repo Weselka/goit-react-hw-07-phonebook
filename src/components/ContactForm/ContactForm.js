@@ -36,9 +36,6 @@ export const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const dataForm = e.target.elements;
-    console.log(dataForm.name.value === nameInput);
-    console.log(dataForm.number.value);
     const presence = contacts.some(contact => contact.name === nameInput);
     if (presence) {
       Notify.warning(`${nameInput} is already in contacts.`);
