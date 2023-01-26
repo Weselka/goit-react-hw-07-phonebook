@@ -37,20 +37,15 @@ export const ContactForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     const dataForm = e.target.elements;
-    // const { name, number } = dataForm;
     console.log(dataForm.name.value === nameInput);
     console.log(dataForm.number.value);
-    const presence = contacts.some(
-      contact => contact.name === dataForm.name.value
-    );
+    const presence = contacts.some(contact => contact.name === nameInput);
     if (presence) {
-      Notify.warning(`${dataForm.name.value} is already in contacts.`);
-      // e.target.reset();
+      Notify.warning(`${nameInput} is already in contacts.`);
       clearStateInput();
       return;
     }
     dispatch(addContact({name:nameInput, phone:numberInput}));
-    // e.target.reset();
     clearStateInput();
   };
   return (
